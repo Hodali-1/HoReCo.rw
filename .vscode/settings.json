@@ -1,0 +1,50 @@
+{
+    "liveServer.settings.port": 5502,
+    "cSpell.words": [
+        "a",
+        "adipisicing",
+        "agri",
+        "aliquam",
+        "amet",
+        "Assiat",
+        "Basile",
+        "BUCYANA",
+        "Calorin",
+        "consectetur",
+        "cooporation",
+        "elit",
+        "explicabo",
+        "Florient",
+        "Gasabo",
+        "Habinshuti",
+        "illo",
+        "IRABARUTA",
+        "KANEZA",
+        "Kirabo",
+        "Mechanisation",
+        "MUNYEMANA",
+        "Mureketete",
+        "MUTONI",
+        "Nesciunt",
+        "NIRINGIYIMANA",
+        "NYANDWI",
+        "Prisca",
+        "Repellat",
+        "repellendu",
+        "reprehenderit",
+        "RUGEMA",
+        "Shima",
+        "Subcribe",
+        "Ugirashebuja",
+        "Umuhire",
+        "Velit"
+    ],
+    "cSpell.customDictionaries": {
+        "custom-dictionary-workspace": {
+            "name": "custom-dictionary-workspace",
+            "path": "${workspaceFolder:HoReCo og}/.cspell/custom-dictionary-workspace.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    }
+}
