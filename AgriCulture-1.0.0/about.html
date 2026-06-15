@@ -4,13 +4,23 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>HoReCo – Horticulture in reality cooporation</title>
+  <title>HoReCo Rwanda: Horticulture in Reality Corporation</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
+  <link rel="canonical" href="https://horeco.rw/about.html">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.ico" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Performance Optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap"></noscript>
+
+  <!-- Critical CSS -->
+  <style>body{font-family:Open Sans,sans-serif;line-height:1.6;color:#212529}.header{background:#fff;padding:10px 0;position:fixed;top:0;width:100%;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.1)}.page-title{min-height:100vh;position:relative;overflow:hidden}.custom-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#116530 0%,#2d465e 100%);display:flex;justify-content:center;align-items:center;z-index:99999;transition:opacity .5s ease-out}.custom-loader.fade-out{opacity:0;pointer-events:none}.loader-content{text-align:center;color:#fff}.loader-logo{width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite}.loader-logo img{width:50px;height:50px;object-fit:contain}.loader-text{font-size:18px;font-weight:500;margin-bottom:10px;letter-spacing:1px}.loader-subtitle{font-size:14px;opacity:.8;margin:0}.loader-dots{display:inline-block;margin-top:15px}.loader-dots span{display:inline-block;width:8px;height:8px;background:#28a745;border-radius:50%;margin:0 3px;animation:bounce 1.4s infinite}.loader-dots span:nth-child(1){animation-delay:-.32s}.loader-dots span:nth-child(2){animation-delay:-.16s}.loader-dots span:nth-child(3){animation-delay:0}@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.8}}@keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}</style>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -26,7 +36,46 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- Loading Screen Control -->
+  <script>
+    // Hide loading screen when page is fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('custom-loader');
+        if (loader) {
+          loader.classList.add('fade-out');
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 500);
+        }
+      }, 800); // Minimum loading time for better UX
+    });
+
+    // Show loading screen immediately on page start
+    document.addEventListener('DOMContentLoaded', function() {
+      const loader = document.getElementById('custom-loader');
+      if (loader) {
+        loader.style.display = 'flex';
+      }
+    });
+  </script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
 
   <!-- =======================================================
   * Template Name: AgriCulture
@@ -38,6 +87,22 @@
 </head>
 
 <body class="about-page">
+
+  <!-- Custom Loading Screen -->
+  <div id="custom-loader" class="custom-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="assets/img/logo.png" alt="HoReCo Rwanda">
+      </div>
+      <div class="loader-text">HoReCo Rwanda</div>
+      <div class="loader-subtitle">Horticulture in Reality Corporation</div>
+      <div class="loader-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
 
   <header id="header" class="header d-flex align-items-center position-relative">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
@@ -174,7 +239,8 @@
                         <li>YEA-R PROJECT (SNV Rwanda & MasterCard)</li>
                         <li>Kwihaza Project (EU & NAEB)</li>
                         <li>EAVY Project (AGRA)</li>
-                        <li>Solid Africa Project</li>
+                        <li>Sustainable Agriculture for economic empowerment  (SAEE)</li>
+                        <li> PSAC</li>
                       </ul>
                     </div>
                   </div>
@@ -207,8 +273,8 @@
                   <h5 class="card-title">Jacques Dawson IYAMUREMYE</h5>
                   <p class="card-text"><strong>Chairman</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -222,8 +288,8 @@
                   <h5 class="card-title">Epimaque Nsabagasani</h5>
                   <p class="card-text"><strong>Vice Chairman</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -234,11 +300,11 @@
               <div class="card">
                 <img src="assets/img/team/Secretary.jpeg" alt="Delephine UWAMAHORO" class="card-img-top">
                 <div class="card-body text-center">
-                  <h5 class="card-title">Delephine UWAMAHORO</h5>
+                  <h5 class="card-title">Delphine MUJAWAMARIA</h5>
                   <p class="card-text"><strong>Secretary</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -252,8 +318,8 @@
                   <h5 class="card-title">Basile Umuhire IRABARUTA</h5>
                   <p class="card-text"><strong>Advisor</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -267,8 +333,8 @@
                   <h5 class="card-title">Phocas GAHAMANYI</h5>
                   <p class="card-text"><strong>Advisor</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -299,8 +365,8 @@
                   <h5 class="card-title">Richard BUCYANA</h5>
                   <p class="card-text"><strong>CEO</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -314,8 +380,8 @@
                   <h5 class="card-title">Emile MUNYEMANA</h5>
                   <p class="card-text"><strong>Capacity Building Officer & Advisor to CEO</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -329,8 +395,8 @@
                   <h5 class="card-title">Benjamin NIRINGIYIMANA</h5>
                   <p class="card-text"><strong>Senior Accountant</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -344,8 +410,8 @@
                   <h5 class="card-title">Agnes KANEZA</h5>
                   <p class="card-text"><strong>Human Resource Manager</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -359,8 +425,8 @@
                   <h5 class="card-title">Basile Umuhire IRABARUTA</h5>
                   <p class="card-text"><strong>Program Manager of Kwihaza, EAVY and PSAC Projects</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -371,11 +437,11 @@
               <div class="card">
                 <img src="assets/img/team/Project Manager YEA-R Project.jpeg" alt="Leo Ugirashebuja" class="card-img-top">
                 <div class="card-body text-center">
-                  <h5 class="card-title">Leo Ugirashebuja</h5>
+                  <h5 class="card-title">Leonidas UGIRASHEBUJA</h5>
                   <p class="card-text"><strong>YEA-R Project Manager</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -384,43 +450,13 @@
 
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card">
-                <img src="assets/img/team/Monitoring and Evaluation Officer.jpeg" alt="Florient Habinshuti" class="card-img-top">
+                <img src="assets/img/team/SA  Northern Province.jpeg" alt="Eugene NIYITEGEKA" class="card-img-top" style="object-fit: cover; object-position: center 30%; height: 250px; width: 100%;">
                 <div class="card-body text-center">
-                  <h5 class="card-title">Florient Habinshuti</h5>
-                  <p class="card-text"><strong>Monitoring Evaluation and Learning Officer(MEL)</strong></p>
+                  <h5 class="card-title">Eugene NIYITEGEKA</h5>
+                  <p class="card-text"><strong>Northern province and Kigali City/Lot4 Senior Agronomist</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/in/florien-habinshuti-3b7a0121a/" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-              <div class="card">
-                <img src="assets/img/team/project accountant.jpeg" alt="Assiat Mureketete" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Assiat Mureketete</h5>
-                  <p class="card-text"><strong>Project Accountant</strong></p>
-                  <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-             <div class="col-lg-3 col-md-6 mb-4">
-              <div class="card">
-                <img src="assets/img/team/project supervisor.jpeg" alt="Carolina Kirabo" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Caroline Kirabo</h5>
-                  <p class="card-text"><strong>YEA-R Project officer</strong></p>
-                  <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -429,19 +465,50 @@
 
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card">
-                <img src="assets/img/team/Administrative Assistant to CEO.jpeg" alt="Prisca Shima RUGEMA" class="card-img-top">
+                <img src="assets/img/team/SA Eastern province.jpeg" alt="Pascal HAKIZIMANA" class="card-img-top">
                 <div class="card-body text-center">
-                  <h5 class="card-title">Prisca Shima RUGEMA</h5>
-                  <p class="card-text"><strong>Administrative Assistant to CEO</strong></p>
+                  <h5 class="card-title">Pascal HAKIZIMANA</h5>
+                  <p class="card-text"><strong>Eastern province |  Senior agronomist lot 5</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
               </div>
             </div>
 
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/SA Southern Province.jpeg" alt="Antoine BYUKANSEGA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Antoine BYUKANSEGA</h5>
+                  <p class="card-text"><strong>Southern Province | Senior Agronomist Lot2</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Monitoring and Evaluation Officer.jpeg" alt="Florien HABINSHUTI" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Florien HABINSHUTI</h5>
+                  <p class="card-text"><strong>Monitoring and Evaluation Officer</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
             <div class="col-lg-3 col-md-6 mb-4">
               <div class="card">
                 <img src="assets/img/team/Customer Care and Export.jpeg" alt="Josephine MUTONI" class="card-img-top">
@@ -449,23 +516,8 @@
                   <h5 class="card-title">Josephine MUTONI</h5>
                   <p class="card-text"><strong>Export and Customer officer</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-              <div class="card">
-                <img src="assets/img/team/IT Officer.jpeg" alt="GATETE Irene Hodali" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">GATETE Irene Hodali</h5>
-                  <p class="card-text"><strong>IT Officer</strong></p>
-                  <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>
@@ -479,53 +531,8 @@
                   <h5 class="card-title">Alexis Nyandwi</h5>
                   <p class="card-text"><strong>Media and Communications Officer</strong></p>
                   <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-              <div class="card">
-                <img src="assets/img/team/Messenger.jpeg" alt="Belyse MUNEZERO" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Belyse MUNEZERO</h5>
-                  <p class="card-text"><strong>Messenger</strong></p>
-                  <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-              <div class="card">
-                <img src="assets/img/team/Driver 1.jpeg" alt="Ruzindana Jean Paul" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">Ruzindana Jean Paul</h5>
-                  <p class="card-text"><strong>Driver</strong></p>
-                  <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-              <div class="card">
-                <img src="assets/img/team/Driver 2.jpeg" alt="NTWARI FOLONGO ALDO" class="card-img-top">
-                <div class="card-body text-center">
-                  <h5 class="card-title">NTWARI FOLONGO ALDO</h5>
-                  <p class="card-text"><strong>Driver</strong></p>
-                  <div class="social-icons">
-                    <a href="https://twitter.com" title="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="https://facebook.com" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:alexndally@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                   </div>
                 </div>

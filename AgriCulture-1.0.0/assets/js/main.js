@@ -172,12 +172,34 @@
    */
   const NewsManager = {
     // Configuration
-    carouselMaxItems: 4,
-    latestNewsMaxItems: 4,
+    carouselMaxItems: 3,
+    latestNewsMaxItems: 3,
     blogPageMaxItems: 6,
+    currentPage: 1,
+    itemsPerPage: 6,
     
-    // Initial news data (sorted by date, newest first)
+    // Initial news data (will be sorted by date in init)
     newsItems: [
+      {
+        id: 9,
+        title: "RAB Leads Harmonization of Irrigation Management Manuals under the OMIS Project",
+        excerpt: "The Rwanda Agriculture and Animal Resources Development Board (RAB), in collaboration with HoReCo and YEAN under the OMIS Project",
+        date: "2026-05-08",
+        author: "Alexis Nyandwi",
+        category: "HoReCo ",
+        image: "assets/img/blog/blog-9.jpeg",
+        detailUrl: "blog-details-9.html"
+      },
+      {
+        id: 8,
+        title: "KABOKU Cooperative Farmers Double Maize Yields Through HoReCo Support Under OMIS Project",
+        excerpt: "Farmers of KABOKU Cooperative in Kagitumba Sector, Nyagatare District, are celebrating a major milestone in maize production after increasing yields from an average of 3 tonnes per hectare to around 8 tonnes per hectare in Season 2026A",
+        date: "2026-04-23",
+        author: "Alexis Nyandwi",
+        category: "HoReCo",
+        image: "assets/img/blog/blog-8.jpeg",
+        detailUrl: "blog-details-8.html"
+      },
       {
         id: 1,
         title: "HoReCo Capacity Building Program Strengthens Reporting and Coordination for OMIS Project Implementation",
@@ -240,9 +262,23 @@
       }
     ],
 
-    // Sort news items by date (newest first)
+    // Sort news items by date (newest first) - enhanced for month/date priority
     sortNewsByDate() {
-      this.newsItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+      this.newsItems.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        
+        // Primary sort: by year
+        const yearDiff = dateB.getFullYear() - dateA.getFullYear();
+        if (yearDiff !== 0) return yearDiff;
+        
+        // Secondary sort: by month
+        const monthDiff = dateB.getMonth() - dateA.getMonth();
+        if (monthDiff !== 0) return monthDiff;
+        
+        // Tertiary sort: by day
+        return dateB.getDate() - dateA.getDate();
+      });
     },
 
     // Get formatted date string
@@ -262,63 +298,102 @@
       return { day, month };
     },
 
-    // Add new news item (removes oldest if exceeds max)
+    // Add new news item with automatic latest-first positioning
     addNewsItem(newsItem) {
       newsItem.id = Date.now(); // Generate unique ID
-      this.newsItems.unshift(newsItem); // Add to beginning (newest)
-      this.sortNewsByDate();
+      this.newsItems.push(newsItem); // Add to array
+      this.sortNewsByDate(); // Sort to ensure latest is first
+      this.resetPagination(); // Reset to first page when new item is added
       this.updateAllNewsSections();
+      this.updateAllSectionsWithLatestNews(); // Update all sections with latest news
     },
 
-    // Update carousel on homepage
-    updateCarousel() {
-      const carousel = document.querySelector('#hero-carousel .carousel-inner');
-      if (!carousel) return;
+    // Update all sections (slideshow, latest news, blog) with latest news
+    updateAllSectionsWithLatestNews() {
+      this.updateSlideshow();
+      this.updateLatestNewsSection();
+      this.updateBlogPage();
+    },
 
-      const carouselItems = this.newsItems.slice(0, this.carouselMaxItems);
+    // Update slideshow with latest 3 news
+    updateSlideshow() {
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      const latestNews = this.newsItems.slice(0, 3); // Get top 3 latest news
       
-      // Update existing carousel items or create new ones
-      const existingItems = carousel.querySelectorAll('.carousel-item');
+      if (slides.length === 0) return;
       
-      carouselItems.forEach((item, index) => {
-        const { day, month } = this.getDayAndMonth(item.date);
-        const isActive = index === 0 ? 'active' : '';
+      // Update each slide with latest news
+      latestNews.forEach((news, index) => {
+        if (slides[index]) {
+          const slide = slides[index];
+          const isActive = index === 0 ? 'active' : '';
+          
+          // Update slide content
+          slide.classList.toggle('active', isActive);
+          slide.querySelector('img').src = news.image;
+          slide.querySelector('img').alt = news.title;
+          slide.querySelector('h3').textContent = news.title;
+          slide.querySelector('p').textContent = news.excerpt;
+          slide.querySelector('.btn-cta').href = news.detailUrl;
+        }
         
-        if (existingItems[index]) {
-          // Update existing item
-          const carouselItem = existingItems[index];
-          carouselItem.classList.toggle('active', isActive);
-          carouselItem.querySelector('img').src = item.image;
-          carouselItem.querySelector('h3').textContent = item.title;
-          carouselItem.querySelector('p').textContent = item.excerpt;
-          carouselItem.querySelector('.meta').innerHTML = `
-            <span>${this.formatDate(item.date)}</span> | <span>${item.author}</span> | <span>${item.category}</span>
-          `;
-          carouselItem.querySelector('.btn-cta').href = item.detailUrl;
+        // Update dots
+        if (dots[index]) {
+          dots[index].classList.toggle('active', index === 0);
         }
       });
       
-      this.updateCarouselIndicators(carouselItems.length);
+      // Reset slideshow to first slide (latest news)
+      currentSlideIndex = 1;
+      resetAutoSlide();
     },
 
-    // Update carousel indicators
-    updateCarouselIndicators(count) {
-      const indicators = document.querySelector('#hero-carousel .carousel-indicators');
-      if (!indicators) return;
-
-      const existingIndicators = indicators.querySelectorAll('li');
+    // Update Latest News section with latest 3 news
+    updateLatestNewsSection() {
+      const latestNewsContainer = document.querySelector('#recent-posts .row');
+      if (!latestNewsContainer) return;
       
-      // Update existing indicators
-      existingIndicators.forEach((indicator, index) => {
-        if (index < count) {
-          indicator.classList.toggle('active', index === 0);
-          indicator.style.display = '';
-        } else {
-          indicator.style.display = 'none';
-        }
+      const latestNews = this.newsItems.slice(0, 3); // Get top 3 latest news
+      
+      // Clear existing content
+      latestNewsContainer.innerHTML = '';
+      
+      // Create and append news items
+      latestNews.forEach((news, index) => {
+        const { day, month } = this.getDayAndMonth(news.date);
+        const delay = (index + 1) * 100;
+        
+        const newsHTML = `
+          <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="${delay}">
+              <div class="post-img position-relative overflow-hidden">
+                <img src="${news.image}" class="img-fluid" alt="">
+                <span class="post-date">${month} ${day}</span>
+              </div>
+              <div class="post-content d-flex flex-column">
+                <h3 class="post-title">${news.title}</h3>
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">${news.author}</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">${news.category}</span>
+                  </div>
+                </div>
+                <hr>
+                <a href="${news.detailUrl}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        latestNewsContainer.insertAdjacentHTML('beforeend', newsHTML);
       });
     },
 
+    
     // Update latest news section on homepage
     updateLatestNews() {
       const latestNewsContainer = document.querySelector('#recent-posts .row');
@@ -354,38 +429,135 @@
       });
     },
 
-    // Update blog page
+    // Update blog page with pagination
     updateBlogPage() {
       const blogContainer = document.querySelector('#blog-posts-2 .row');
       if (!blogContainer) return;
 
-      const blogItems = this.newsItems.slice(0, this.blogPageMaxItems);
-      const existingArticles = blogContainer.querySelectorAll('.col-lg-4');
+      // Calculate pagination
+      const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+      const endIndex = startIndex + this.itemsPerPage;
+      const paginatedItems = this.newsItems.slice(startIndex, endIndex);
       
-      blogItems.forEach((item, index) => {
+      // Clear existing articles
+      blogContainer.innerHTML = '';
+      
+      // Create articles for current page
+      paginatedItems.forEach((item, index) => {
         const { day, month } = this.getDayAndMonth(item.date);
         
-        if (existingArticles[index]) {
-          // Update existing article
-          const article = existingArticles[index];
-          const articleElement = article.querySelector('article');
-          
-          article.querySelector('.post-img img').src = item.image;
-          article.querySelector('.post-date').innerHTML = `<span>${day}</span>${month}`;
-          article.querySelector('.meta').innerHTML = `
-            <span class="post-date"><span>${day}</span>${month}</span>
-            <div class="d-flex align-items-center">
-              <i class="bi bi-person"></i> <span class="ps-2">${item.author}</span>
-            </div>
-            <span class="px-3 text-black-50">/</span>
-            <div class="d-flex align-items-center">
-              <i class="bi bi-folder2"></i> <span class="ps-2">${item.category}</span>
-            </div>
-          `;
-          article.querySelector('.post-title').textContent = item.title;
-          article.querySelector('.readmore').href = item.detailUrl;
+        const articleHTML = `
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="${index * 100}">
+            <article class="position-relative h-100">
+              <div class="post-img position-relative overflow-hidden">
+                <img src="${item.image}" class="img-fluid" alt="">
+              </div>
+              <div class="meta d-flex align-items-end">
+                <span class="post-date"><span>${day}</span>${month}</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-person"></i> <span class="ps-2">${item.author}</span>
+                </div>
+                <span class="px-3 text-black-50">/</span>
+                <div class="d-flex align-items-center">
+                  <i class="bi bi-folder2"></i> <span class="ps-2">${item.category}</span>
+                </div>
+              </div>
+              <div class="post-content d-flex flex-column">
+                <h3 class="post-title">${item.title}</h3>
+                <a href="${item.detailUrl}" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              </div>
+            </article>
+          </div>
+        `;
+        
+        blogContainer.insertAdjacentHTML('beforeend', articleHTML);
+      });
+      
+      // Update pagination
+      this.updatePagination();
+    },
+
+    // Update pagination controls
+    updatePagination() {
+      const paginationContainer = document.querySelector('#pagination-container');
+      if (!paginationContainer) return;
+      
+      // Limit to only 2 pages
+      const totalPages = 2;
+      
+      // Clear existing pagination
+      paginationContainer.innerHTML = '';
+      
+      // Previous button
+      const prevLi = document.createElement('li');
+      prevLi.innerHTML = `<a href="#" ${this.currentPage === 1 ? 'class="disabled"' : ''}><i class="bi bi-chevron-left"></i></a>`;
+      paginationContainer.appendChild(prevLi);
+      
+      // Page numbers (only show 1 and 2)
+      for (let i = 1; i <= totalPages; i++) {
+        const pageLi = document.createElement('li');
+        pageLi.innerHTML = `<a href="#" ${i === this.currentPage ? 'class="active"' : ''}>${i}</a>`;
+        paginationContainer.appendChild(pageLi);
+      }
+      
+      // Next button
+      const nextLi = document.createElement('li');
+      nextLi.innerHTML = `<a href="#" ${this.currentPage === totalPages ? 'class="disabled"' : ''}><i class="bi bi-chevron-right"></i></a>`;
+      paginationContainer.appendChild(nextLi);
+      
+      // Add click handlers
+      this.attachPaginationHandlers();
+    },
+
+    // Attach click handlers to pagination
+    attachPaginationHandlers() {
+      const paginationContainer = document.querySelector('#pagination-container');
+      if (!paginationContainer) return;
+      
+      paginationContainer.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const target = e.target.closest('a');
+        if (!target || target.classList.contains('disabled')) return;
+        
+        // Limit to only 2 pages
+        const totalPages = 2;
+        
+        if (target.querySelector('.bi-chevron-left')) {
+          // Previous page
+          if (this.currentPage > 1) {
+            this.goToPage(this.currentPage - 1);
+          }
+        } else if (target.querySelector('.bi-chevron-right')) {
+          // Next page
+          if (this.currentPage < totalPages) {
+            this.goToPage(this.currentPage + 1);
+          }
+        } else if (target.textContent && !isNaN(parseInt(target.textContent))) {
+          // Page number
+          const pageNumber = parseInt(target.textContent);
+          if (pageNumber >= 1 && pageNumber <= totalPages) {
+            this.goToPage(pageNumber);
+          }
         }
       });
+    },
+
+    // Navigate to specific page
+    goToPage(pageNumber) {
+      // Limit to only 2 pages
+      const totalPages = 2;
+      
+      if (pageNumber < 1 || pageNumber > totalPages) return;
+      
+      this.currentPage = pageNumber;
+      this.updateBlogPage();
+      
+      // Scroll to top of blog posts
+      const blogSection = document.querySelector('#blog-posts-2');
+      if (blogSection) {
+        blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     },
 
     // Update all news sections
@@ -395,17 +567,24 @@
       this.updateBlogPage();
     },
 
-    // Initialize news management
+    // Reset pagination to first page (useful when adding new items)
+    resetPagination() {
+      this.currentPage = 1;
+    },
+
+    // Initialize news management with latest-first system
     init() {
-      this.sortNewsByDate();
+      this.sortNewsByDate(); // Ensure latest news is first
       
       // Wait for DOM to be ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
           this.updateAllNewsSections();
+          this.updateAllSectionsWithLatestNews(); // Initialize all sections with latest news
         });
       } else {
         this.updateAllNewsSections();
+        this.updateAllSectionsWithLatestNews(); // Initialize all sections with latest news
       }
     }
   };
@@ -416,7 +595,7 @@
   // Make NewsManager available globally for adding new items
   window.NewsManager = NewsManager;
 
-  // Demo function to test adding new news items
+  // Demo function to test adding new news items with latest-first system
   window.addTestNews = function() {
     const newNewsItem = {
       title: "New HoReCo Initiative Launches Digital Agriculture Platform",
@@ -429,12 +608,87 @@
     };
     
     NewsManager.addNewsItem(newNewsItem);
-    console.log('New news item added! Oldest item has been removed if necessary.');
+    console.log('New news item added! Latest news is now first in all sections.');
   };
 
-  // Log instructions for testing
-  console.log('News Management System initialized!');
-  console.log('To add a test news item, run: addTestNews()');
-  console.log('To add a custom news item, run: NewsManager.addNewsItem({title, excerpt, date, author, category, image, detailUrl})');
+  // Demo function to add news with specific date to test month/date priority
+  window.addTestNewsWithDate = function(year, month, day) {
+    const date = new Date(year, month - 1, day); // month is 0-indexed in JS
+    const newNewsItem = {
+      title: `Test News for ${date.toLocaleDateString()}`,
+      excerpt: `This is a test news item created for ${date.toLocaleDateString()} to verify the latest-first sorting system works correctly.`,
+      date: date.toISOString().split('T')[0],
+      author: "Test System",
+      category: "Testing",
+      image: "assets/img/blog/blog-2.jpeg",
+      detailUrl: "#"
+    };
+    
+    NewsManager.addNewsItem(newNewsItem);
+    console.log(`Added test news for ${date.toLocaleDateString()}. It should now appear first in all sections.`);
+  };
+
+  // Slideshow functionality
+let currentSlideIndex = 1;
+let slideInterval;
+
+function showSlide(n) {
+  const slides = document.getElementsByClassName('slide');
+  const dots = document.getElementsByClassName('dot');
+  
+  if (n > slides.length) { currentSlideIndex = 1 }
+  if (n < 1) { currentSlideIndex = slides.length }
+  
+  // Hide all slides
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].classList.remove('active');
+  }
+  
+  // Remove active from all dots
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].classList.remove('active');
+  }
+  
+  // Show current slide and activate current dot
+  slides[currentSlideIndex - 1].classList.add('active');
+  dots[currentSlideIndex - 1].classList.add('active');
+}
+
+function changeSlide(n) {
+  currentSlideIndex += n;
+  showSlide(currentSlideIndex);
+  resetAutoSlide();
+}
+
+function currentSlide(n) {
+  currentSlideIndex = n;
+  showSlide(currentSlideIndex);
+  resetAutoSlide();
+}
+
+function autoSlide() {
+  currentSlideIndex++;
+  showSlide(currentSlideIndex);
+}
+
+function startAutoSlide() {
+  slideInterval = setInterval(autoSlide, 3000); // Change slide every 3 seconds
+}
+
+function resetAutoSlide() {
+  clearInterval(slideInterval);
+  startAutoSlide();
+}
+
+// Initialize slideshow when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  showSlide(currentSlideIndex);
+  startAutoSlide();
+});
+
+// Log instructions for testing
+console.log('News Management System initialized!');
+console.log('To add a test news item, run: addTestNews()');
+console.log('To add a custom news item, run: NewsManager.addNewsItem({title, excerpt, date, author, category, image, detailUrl})');
 
 })();

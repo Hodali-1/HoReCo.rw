@@ -1,0 +1,1 @@
+console.log('Testing NewsManager functionality:'); console.log('News items count:', window.NewsManager ? window.NewsManager.newsItems.length : 'NewsManager not found'); console.log('Latest news title:', window.NewsManager ? window.NewsManager.newsItems[0].title : 'N/A'); window.NewsManager && window.NewsManager.updateAllNewsSections(); console.log('Updated all sections');
