@@ -1,0 +1,27 @@
+RewriteEngine on
+
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^http://horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://horeco.rw$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://mail.horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://mail.horeco.rw$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.horeco.rw$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.mail.horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^http://www.mail.horeco.rw$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://horeco.rw$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://mail.horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://mail.horeco.rw$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.horeco.rw$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.mail.horeco.rw/.*$      [NC]
+RewriteCond %{HTTP_REFERER} !^https://www.mail.horeco.rw$      [NC]
+RewriteRule .*\.(jpg|jpeg|gif|png|bmp)$ - [F,NC]
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

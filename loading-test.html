@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Loading Screen Test - HoReCo Rwanda</title>
+  
+  <!-- Critical CSS Inlined -->
+  <style>
+    body{font-family:Open Sans,sans-serif;line-height:1.6;color:#212529;margin:0;padding:0}
+    
+    /* Custom Loading Screen */
+    .custom-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#116530 0%,#2d465e 100%);display:flex;justify-content:center;align-items:center;z-index:999999;transition:opacity 0.5s ease-out}
+    .custom-loader.fade-out{opacity:0;pointer-events:none}
+    .loader-content{text-align:center;color:white}
+    .loader-logo-container{margin-bottom:25px}
+    .loader-logo{width:100px;height:100px;margin:0 auto;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite ease-in-out;box-shadow:0 4px 20px rgba(0,0,0,0.2)}
+    .loader-logo img{width:60px;height:60px;object-fit:contain;filter:brightness(0) invert(1)}
+    .loader-text{font-size:22px;font-weight:600;margin-bottom:8px;letter-spacing:2px;text-transform:uppercase}
+    .loader-subtitle{font-size:14px;opacity:0.9;margin:0 0 20px 0;font-weight:300}
+    .loader-dots{display:inline-block;margin-top:20px}
+    .loader-dots span{display:inline-block;width:10px;height:10px;background:#28a745;border-radius:50%;margin:0 4px;animation:bounce 1.4s infinite ease-in-out}
+    .loader-dots span:nth-child(1){animation-delay:-0.32s}
+    .loader-dots span:nth-child(2){animation-delay:-0.16s}
+    .loader-dots span:nth-child(3){animation-delay:0}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;box-shadow:0 4px 20px rgba(0,0,0,0.2)}50%{transform:scale(1.05);opacity:0.9;box-shadow:0 6px 25px rgba(0,0,0,0.3)}}
+    @keyframes bounce{0%,80%,100%{transform:scale(0.6);opacity:0.5}40%{transform:scale(1);opacity:1}}
+    
+    /* Test controls */
+    .test-controls{position:fixed;top:20px;right:20px;z-index:1000000;background:rgba(0,0,0,0.8);color:white;padding:15px;border-radius:8px}
+    .test-controls h3{margin:0 0 10px 0;font-size:16px}
+    .test-btn{background:#28a745;color:white;border:none;padding:8px 15px;margin:5px;border-radius:4px;cursor:pointer;font-size:14px}
+    .test-btn:hover{background:#218838}
+    .status{margin-top:10px;font-size:12px;opacity:0.8}
+  </style>
+</head>
+<body>
+  <!-- Custom Loading Screen -->
+  <div id="custom-loader" class="custom-loader">
+    <div class="loader-content">
+      <div class="loader-logo-container">
+        <div class="loader-logo">
+          <img src="assets/img/logo.png" alt="HoReCo Rwanda">
+        </div>
+      </div>
+      <div class="loader-text">HoReCo Rwanda</div>
+      <div class="loader-subtitle">Horticulture in Reality Corporation</div>
+      <div class="loader-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Test Controls -->
+  <div class="test-controls">
+    <h3>Loading Screen Test</h3>
+    <button class="test-btn" onclick="showLoader()">Show Loader</button>
+    <button class="test-btn" onclick="hideLoader()">Hide Loader</button>
+    <button class="test-btn" onclick="simulateLoad()">Simulate Load</button>
+    <div class="status" id="status">Ready to test</div>
+  </div>
+
+  <script>
+    function showLoader() {
+      const loader = document.getElementById('custom-loader');
+      loader.style.display = 'flex';
+      loader.classList.remove('fade-out');
+      document.getElementById('status').textContent = 'Loader shown';
+    }
+
+    function hideLoader() {
+      const loader = document.getElementById('custom-loader');
+      loader.classList.add('fade-out');
+      setTimeout(() => {
+        loader.style.display = 'none';
+        document.getElementById('status').textContent = 'Loader hidden';
+      }, 500);
+    }
+
+    function simulateLoad() {
+      showLoader();
+      document.getElementById('status').textContent = 'Simulating 3 second load...';
+      
+      setTimeout(() => {
+        hideLoader();
+        document.getElementById('status').textContent = 'Load simulation complete';
+      }, 3000);
+    }
+
+    // Auto-hide after 5 seconds for demo
+    setTimeout(() => {
+      hideLoader();
+      document.getElementById('status').textContent = 'Auto-hidden after 5 seconds demo';
+    }, 5000);
+
+    // Show loader on page load
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('custom-loader');
+        if (loader) {
+          loader.classList.add('fade-out');
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 500);
+        }
+      }, 800);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const loader = document.getElementById('custom-loader');
+      if (loader) {
+        loader.style.display = 'flex';
+      }
+    });
+  </script>
+</body>
+</html>

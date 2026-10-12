@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>HoReCo Rwanda: Horticulture in Reality Corporation</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="canonical" href="https://horeco.rw/about.html">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.ico" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Performance Optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap"></noscript>
+
+  <!-- Critical CSS Inlined -->
+  <style>
+    body{font-family:Open Sans,sans-serif;line-height:1.6;color:#212529}
+    .header{background:#fff;padding:10px 0;position:fixed;top:0;width:100%;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+    .page-title{min-height:100vh;position:relative;overflow:hidden}
+    
+    /* Custom Loading Screen */
+    .custom-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,#116530 0%,#2d465e 100%);display:flex;justify-content:center;align-items:center;z-index:99999;transition:opacity 0.5s ease-out}
+    .custom-loader.fade-out{opacity:0;pointer-events:none}
+    .loader-content{text-align:center;color:white}
+    .loader-logo{width:80px;height:80px;margin:0 auto 20px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;animation:pulse 2s infinite}
+    .loader-logo img{width:50px;height:50px;object-fit:contain}
+    .loader-text{font-size:18px;font-weight:500;margin-bottom:10px;letter-spacing:1px}
+    .loader-subtitle{font-size:14px;opacity:0.8;margin:0}
+    .loader-dots{display:inline-block;margin-top:15px}
+    .loader-dots span{display:inline-block;width:8px;height:8px;background:#28a745;border-radius:50%;margin:0 3px;animation:bounce 1.4s infinite}
+    .loader-dots span:nth-child(1){animation-delay:-0.32s}
+    .loader-dots span:nth-child(2){animation-delay:-0.16s}
+    .loader-dots span:nth-child(3){animation-delay:0}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.8}}
+    @keyframes bounce{0%,80%,100%{transform:scale(0)}40%{transform:scale(1)}}
+  </style>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Marcellus:wght@400&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- Loading Screen Control -->
+  <script>
+    // Hide loading screen when page is fully loaded
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loader = document.getElementById('custom-loader');
+        if (loader) {
+          loader.classList.add('fade-out');
+          setTimeout(function() {
+            loader.style.display = 'none';
+          }, 500);
+        }
+      }, 800); // Minimum loading time for better UX
+    });
+
+    // Show loading screen immediately on page start
+    document.addEventListener('DOMContentLoaded', function() {
+      const loader = document.getElementById('custom-loader');
+      if (loader) {
+        loader.style.display = 'flex';
+      }
+    });
+  </script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          })
+          .catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+  </script>
+
+  <!-- =======================================================
+  * Template Name: AgriCulture
+  * Template URL: https://bootstrapmade.com/agriculture-bootstrap-website-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="about-page">
+
+  <!-- Custom Loading Screen -->
+  <div id="custom-loader" class="custom-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="assets/img/logo.png" alt="HoReCo Rwanda">
+      </div>
+      <div class="loader-text">HoReCo Rwanda</div>
+      <div class="loader-subtitle">Horticulture in Reality Corporation</div>
+      <div class="loader-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+
+  <header id="header" class="header d-flex align-items-center position-relative">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="assets/img/logo.png" alt="HoReCo-Rwanda">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About Us</a></li>
+          <li><a href="services.html">Our Services</a></li>
+          <li class="dropdown"><a href="#"><span>Opportunities</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="vacancy.html">Vacancy Position</a></li>
+              <li><a href="volunteer.html">Volunteer/-Internship</a></li>
+            </ul>
+          </li>
+          <li><a href="blog.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/page-title-bg.webp);">
+      <div class="container position-relative">
+        <h1>About</h1>
+        <p>NO AGRICULTURE, NO FOOD! NO FOOD, NO LIFE!</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">About</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- About 3 Section -->
+    <section id="about-3" class="about-3 section" style="background-image: url('assets/img/Rwanda.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+      
+      <!-- Full-width white overlay with blur -->
+      <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.92); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); z-index: 1;"></div>
+
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="row gy-4 justify-content-between align-items-center">
+          <div class="col-lg-12 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+            <div class="about-header mb-5">
+              <h2 class="content-title mb-4">About Horticulture in Reality Corporation</h2>
+              <div class="alert alert-success mb-4">
+                <strong>Our Motto:</strong> No Agriculture, No Food! No Food, No Life.
+              </div>
+            </div>
+
+            <div class="mb-5">
+              <p class="mb-4">
+                <strong>Horticulture in Reality Corporation Ltd (HoReCo)</strong> is a Rwandan agri-business company led by agricultural professionals trained in Israel. Our expertise lies in horticulture development and value chains, irrigation technology, agricultural mechanization, and youth capacity building in agriculture.
+              </p>
+              <p class="mb-4">
+                HoReCo is committed to improving the livelihoods of Rwandans by transforming agriculture from subsistence-based practices to modern, market-driven farming. We achieve this by delivering innovative agricultural extension services that integrate sustainable crop production with advanced irrigation technologies.
+              </p>
+              <p>
+                HoReCo was founded in alignment with Rwanda's national policies and strategies aimed at engaging youth in the country's development. The idea to establish HoReCo was born on June 10, 2016, by ten young, dedicated entrepreneurs who had completed an 11-month practical agricultural training program in Israel. What began as a cooperative named Horticulture in Reality Cooperative was later upgraded and officially registered as a company on July 25, 2019, under the name Horticulture in Reality Corporation Ltd (HoReCo) with the Rwanda Development Board (RDB).
+              </p>
+            </div>
+
+            <div class="row mb-5">
+              <div class="col-md-6 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Our Philosophy</h5>
+                    <p class="card-text">We don't impose our ideas on farmers; instead, we work to understand and meet their needs. <strong>We do what you want.</strong></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Mission</h5>
+                    <p class="card-text">To transform Rwanda's agriculture sector from subsistence to modern, sustainable farming.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Vision</h5>
+                    <p class="card-text">To be a leading agri-business company in Rwanda and the region.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Values</h5>
+                    <p class="card-text"><strong>Integrity, Innovation, Sustainability, and Excellence.</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Core Services</h5>
+                      <ul>
+                        <li>Horticultural development</li>
+                        <li>Irrigation technology (OMMIS)</li>
+                        <li>Agribusiness consultancy</li>
+                        <li>Agriculture mechanization</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 mb-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">Key Projects</h5>
+                      <ul>
+                        <li>OMIS project (with MINAGRI and RAB)</li>
+                        <li>Potato Seed Production Project (PSPP)</li>
+                        <li>YEA-R PROJECT (SNV Rwanda & MasterCard)</li>
+                        <li>Kwihaza Project (EU & NAEB)</li>
+                        <li>EAVY Project (AGRA)</li>
+                        <li>Sustainable Agriculture for economic empowerment  (SAEE)</li>
+                        <li> PSAC</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="text-center mt-4">
+              <a href="./contact.html" class="btn btn-success">Get in Touch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /About 3 Section -->
+
+    <!-- Board Section -->
+    <section class="team-15 team section light-background" id="board-team">
+      <!-- Section Title -->
+      <div class="container section-title">
+        <h2>Board of Directors</h2>
+        <p>Coming together is a beginning, staying together is progress and working together is a success. We are a strong working team taking agriculture to the next level.</p>
+      </div><!-- End Section Title -->
+
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Chairman.jpeg" alt="Jacques Dawson IYAMUREMYE" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Jacques Dawson IYAMUREMYE</h5>
+                  <p class="card-text"><strong>Chairman</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Vise Chairman.jpeg" alt="Epimaque Nsabagasani" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Epimaque Nsabagasani</h5>
+                  <p class="card-text"><strong>Vice Chairman</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Secretary.jpeg" alt="Delephine UWAMAHORO" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Delphine MUJAWAMARIA</h5>
+                  <p class="card-text"><strong>Secretary</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Senior agronomist.jpeg" alt="Basile Umuhire IRABARUTA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Basile Umuhire IRABARUTA</h5>
+                  <p class="card-text"><strong>Advisor</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Advisor.jpeg" alt="Phocas GAHAMANYI" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Phocas GAHAMANYI</h5>
+                  <p class="card-text"><strong>Advisor</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>           
+          </div>
+        </div>
+      </div>
+    </section><!-- /Board Section -->
+
+
+    <!-- Management Team Section -->
+    <section class="team-15 team section" id="management-team">
+      <!-- Section Title -->
+      <div class="container section-title">
+        <h2>Management Team</h2>
+        <p>Coming together is a beginning, staying together is progress and working together is a success. We are a strong working team taking agriculture to the next level.</p>
+      </div><!-- End Section Title -->
+
+      <div class="content">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/CEO.jpeg" alt="Richard BUCYANA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Richard BUCYANA</h5>
+                  <p class="card-text"><strong>CEO</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/capacity Building Officer & advisor to CEO.jpeg" alt="Emile MUNYEMANA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Emile MUNYEMANA</h5>
+                  <p class="card-text"><strong>Capacity Building Officer & Advisor to CEO</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Senior Accountant.jpeg" alt="Benjamin NIRINGIYIMANA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Benjamin NIRINGIYIMANA</h5>
+                  <p class="card-text"><strong>Senior Accountant</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Human Resource Officer.jpeg" alt="Agnes KANEZA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Agnes KANEZA</h5>
+                  <p class="card-text"><strong>Human Resource Manager</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Senior agronomist.jpeg" alt="Basile Umuhire IRABARUTA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Basile Umuhire IRABARUTA</h5>
+                  <p class="card-text"><strong>Program Manager of Kwihaza, EAVY and PSAC Projects</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Project Manager YEA-R Project.jpeg" alt="Leo Ugirashebuja" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Leonidas UGIRASHEBUJA</h5>
+                  <p class="card-text"><strong>YEA-R Project Manager</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/SA  Northern Province.jpeg" alt="Eugene NIYITEGEKA" class="card-img-top" style="object-fit: cover; object-position: center 30%; height: 250px; width: 100%;">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Eugene NIYITEGEKA</h5>
+                  <p class="card-text"><strong>Northern province and Kigali City/Lot4 Senior Agronomist</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/SA Eastern province.jpeg" alt="Pascal HAKIZIMANA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Pascal HAKIZIMANA</h5>
+                  <p class="card-text"><strong>Eastern province |  Senior agronomist lot 5</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/SA Southern Province.jpeg" alt="Antoine BYUKANSEGA" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Antoine BYUKANSEGA</h5>
+                  <p class="card-text"><strong>Southern Province | Senior Agronomist Lot2</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Monitoring and Evaluation Officer.jpeg" alt="Florien HABINSHUTI" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Florien HABINSHUTI</h5>
+                  <p class="card-text"><strong>Monitoring and Evaluation Officer</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/Customer Care and Export.jpeg" alt="Josephine MUTONI" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Josephine MUTONI</h5>
+                  <p class="card-text"><strong>Export and Customer officer</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:horecorwanda@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+              <div class="card">
+                <img src="assets/img/team/communicator Officer.jpeg" alt="Alexis Nyandwi" class="card-img-top">
+                <div class="card-body text-center">
+                  <h5 class="card-title">Alexis Nyandwi</h5>
+                  <p class="card-text"><strong>Media and Communications Officer</strong></p>
+                  <div class="social-icons">
+                    <a href="https://wa.me/250788210295" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:alexndally@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="https://linkedin.com" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Management Team Section -->
+
+    
+  </main>
+
+ <footer id="footer" class="footer dark-background">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4 col-md-6 footer-about">
+            <a href="index.html" class="logo d-flex align-items-center">
+              <span class="sitename">Horticulture in Reality Corporation Ltd (HoReCo)</span>
+            </a>
+            <div class="footer-contact pt-3">
+              <p>Kigali - Gasabo, </p>
+              <p>KG 175 st, House 15,</p>
+              <p class="mt-3"><strong>Phone:</strong> <span><a href="tel:+250788210295">+250 788 210 295</a></span></p>
+              <p><strong>Email:</strong> <span><a href="mailto:horecorwanda@gmail.com">horecorwanda@gmail.com</a>, <a href="mailto:info@horeco.rw">info@horeco.rw</a></span></p>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-3 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="about.html">About us</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="blog.html">News</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-3 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><a href="#">Irrigation Services</a></li>
+              <li><a href="#">Farming Services</a></li>
+              <li><a href="#">Training Services</a></li>
+              <li><a href="#">Export Services</a></li>
+            </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="copyright text-center">
+      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+
+        <div class="d-flex flex-column align-items-center align-items-lg-start">
+          <div>
+            © Copyright <strong><span>HoReCo.Rw</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
+            Designed by <a href="https://gateteirenehodali.tiiny.site/">GateteIrene</a> Distributed by <a href="./index.html">HoReCo</a>
+          </div>
+        </div>
+
+        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
+          <a href="https://x.com/HoReCo_Rw"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.facebook.com/profile.php?id=61582405349041"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/horeco_rw?igsh=M2k4ejU1NHh2YzN3"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/in/horeco-rwanda-353b36323/"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.youtube.com/@horecorwanda4927"><i class="bi bi-youtube"></i></a>
+          
+        </div>
+
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
